@@ -1,0 +1,81 @@
+# \
+echo "a\|b" | h 'a\\\|b'
+echo "a\|b" | h "a\\\\\\|b"
+echo "a\|b" | h '\\' '\|'
+echo "tastb'c" | h "b\'c"
+echo "tastb\`c" | h 'b\`c'
+echo "tastb\\\`c" | h 'b\\\`c'
+echo "tastb\\'c" | h "b\\'c"
+echo "tastb\\'c" | h "b\\\'c"
+echo "tastb\\\"c" | h 'b\\"c'
+echo "tastb\\\"c" | h 'b\\\"c'
+echo "ta\\\"042stb\\\"042" | h '\\\042042'
+echo "tastb\\'c" | h 'b\'
+echo 'a\\\\t\\z' | h '\\\\\t'
+echo 'a\\\\t\\z' | h '\\\\\\t'
+
+# ? * {n,m}
+echo "a\*b*c\*d*e?f\?g{h}ijk{}{}" | h '\*' '\?' '\{' '\}'
+echo "a\*b*c\*d*e?f\?g{h}ijk{}{}" | h '*' '?' '{' '}'
+echo "a\*b*c\*d*e?f\?g{h}ijk{}{}" | h "\*" "\?" "\{" "\}"
+echo "a\*b*c\*d*e?f\?g{h}ijk{}{}" | h "{" "}"
+
+echo "abbcccdddd" | h 'b?'
+echo "abbcccdddd" | h 'c*'
+echo "abbcccdddd" | h 'cc?'
+echo "abbcccdddd" | h 'cc*'
+echo "abbcccdddd" | h 'c{0,1}'
+echo "abbcccdddd" | h 'd{0,3}'
+echo "abbcccdddd" | h 'd{1,3}'
+echo "abcdefgababcde" | h '(ab){2,5}'
+
+# +
+echo "abcdefgababcde" | h '(ab)+'
+echo "abcde+fgababcde" | h '.\+'
+
+# [ \t]
+echo "abc	def g" | h '[ \t]d' ' g'
+echo "abc	def g" | h '[	 ]d' ' g'
+
+# ' "
+echo "\"a.h\"" | h '"a'
+echo "\"a.h\"" | h 'h"'
+echo "\"a.h\"" | h "\"a"
+echo "\"a.h\"" | h "h\""
+echo "'a.h'" | h "h'" "'a"
+echo "'a.h'" | h "\'a" "h\'"
+echo "tastb\\'c" | h "b\\\'c"
+
+# ^ $
+echo "abcdef" | h '.{2}f$' '^a.{0,1}'
+echo "abcdef" | h ".{2}f$" "^a.?"
+echo "ababc" | h '^ab'
+
+# overlapping
+echo "abcdef" | h 'abc' 'cde' 'f'
+
+# complex
+echo "a\|b|c d\\\"eeef\'ghijkl" | h 'jk' '\\\|b' 'e{2,3}' 'f?' 'd\\\"' 'l$' '^a'
+
+# shouldn't cause lockup
+echo "a\\b|" | h '|'
+
+# misc: { < > | *
+echo '\.h{' | h '\.h{'
+echo '\.h{' | h '\.h\{'
+echo '\.h<' | h '\.h\<'
+echo '\.h>' | h '\.h\>'
+echo '\.h|' | h '\.h|'
+echo '\a.h|' | h '\.h|\\|'
+echo 'a\\|f' | h '\\||f'
+echo '\z\abc' | h '\\*'
+
+# edge of word
+echo "tion is feionla is ion>." | h 'ion\b'
+echo "tion is feionla is ion>." | h '\bion'
+echo "tion is feionla is ion>." | h 'ion\y'
+echo "tion is feionla is iony>." | h 'ion\y'
+echo "tion is feionla is ion>." | h 'ion\>'
+echo "tion is feionla is ion>." | h 'ion>'
+echo "tion is feionla is <ion." | h '\<ion'
+echo "tion is feionla is <ion." | h '<ion'
