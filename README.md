@@ -7,7 +7,8 @@ Highlight Perl regular expression patterns with multiple colors
 This was initially from [hhighlighter](https://github.com/paoloantinori/hhighlighter), but I decided to implement the low level pattern parsing and highlighting, which are handled by ack/ack-grep in hhighlighter. This is because I found issues when using hhighlighter in some test cases - For example:
 
 - [ ] ```echo "tastb'c" | h "b\'c"``` will reach the following error:
-  > bash: eval: line 145: unexpected EOF while looking for matching `'
+  > bash: eval: line 145: unexpected EOF while looking for matching \`''
+
   > bash: eval: line 146: syntax error: unexpected end of file
 - [ ] ```echo "abbcccdddd" | h 'b?'``` won't come back to shell until Ctrl+C.
 - [ ] ```echo "abcdefgababcde" | h '(ab){2,5}'``` will highlight only the last "ab", not "abab".
