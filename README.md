@@ -18,15 +18,29 @@ By using mch, all these problems go away, just like how ```grep -P``` does in pa
 In ~/.bashrc, source the script [h](https://github.com/dczhu/mch/blob/master/h). And the command ```h``` will be ready for use.
 
 ## Usage
-The text that has patterns to be highlighted **has to** be piped into the command ```h```. It may have the following use cases:
+The text that has patterns to be highlighted **HAS TO** be piped into the command ```h```. It may have the following use cases:
 
 * Used by other scripts, like [cxpgrep](https://github.com/dczhu/cxpgrep/blob/master/cxpgrep), in output processing.
 * Highlight patterns in a text file in different colors: ```cat FILE | h PAT1 PAT2 ... | less -R```
 
 It supports only 1 option -i that means case insensitive matching.
 
-## Meta
+## Note
+I designed a bunch of test cases to verify the implementation of pattern parsing and highlighting. Cases can be added to the file cases_h. And there are 2 ways to use the cases: automated and interactive.
 
+Automatic:
+
+```source ch_tests_automated.sh cases_h```
+
+Interactive:
+
+```source ch_tests_interactive.sh cases_h```
+
+In both methods, one needs to compare the output of ```h``` and ```grep -P```. Certainly grep doesn't support multi-color highlighting.
+
+Also, note that these 2 scripts are **NOT** to be run directly. They need to be sourced into the current shell environment. See above.
+
+## Meta
 Deng-Cheng Zhu (dengcheng _DOT_ zhu _AT_ gmail _DOT_ com)
 
 Distributed under the MIT license. See LICENSE for more information.
