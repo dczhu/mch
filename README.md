@@ -46,6 +46,10 @@ In both methods, one needs to compare the output of `h` and `grep -P`. Certainly
 
 Also, note that these 2 scripts are **NOT** to be run directly. They need to be sourced into the current shell environment. See above.
 
+## Releases
+* 1.0
+  - [x] First working code
+
 ## Meta
 Deng-Cheng Zhu (dengcheng _DOT_ zhu _AT_ gmail _DOT_ com)
 
