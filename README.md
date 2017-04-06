@@ -32,7 +32,7 @@ It supports only 1 option -i that means case insensitive matching.
 ## Note
 I designed a bunch of test cases to verify the implementation of pattern parsing and highlighting. Cases can be added to the file cases_h. And there are 2 ways to use the cases: automated and interactive.
 
-Automatic:
+Automated:
 ```shell
 source ch_tests_automated.sh cases_h
 ```
