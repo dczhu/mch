@@ -1,3 +1,7 @@
+# mch - Highlight Perl regular expression patterns with multiple colors
+# Author: Deng-Cheng Zhu <dengcheng(DOT)zhu(AT)gmail(DOT)com>
+# View demo, readme and license info at https://github.com/dczhu/mch
+
 h()
 {
 	_usage() { 
