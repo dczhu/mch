@@ -16,6 +16,8 @@ This was initially from [hhighlighter](https://github.com/paoloantinori/hhighlig
 By using mch, all these problems go away, just like how `grep -P` does in pattern matching - Besides, mch supports different colors for different patterns. That's it.
 
 ## Installation
+**Doing the following should NOT spoil your existing environment - You will only get a new command `h` in the form of Bash function.**
+
 In ~/.bashrc, source the script [h](https://github.com/dczhu/mch/blob/master/h). And the command `h` will be ready for use.
 
 ## Usage
